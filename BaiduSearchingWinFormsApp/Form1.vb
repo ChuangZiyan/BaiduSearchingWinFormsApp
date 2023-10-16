@@ -234,6 +234,10 @@ Public Class Form1
 
             'have to remove the tag for bing search
             Dim my_mail = match.Value '.Replace("<strong>", "").Replace("</strong>", "")
+
+            If my_mail.Split("@")(0).Length < 4 Then
+                Continue For
+            End If
             emails.Add(my_mail)
         Next
 
