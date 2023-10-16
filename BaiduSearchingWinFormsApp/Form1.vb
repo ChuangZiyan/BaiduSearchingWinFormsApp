@@ -67,15 +67,10 @@ Public Class Form1
 
 
 
-        FindEmails("5551ksam@ghmail.com.hk")
+        'FindEmails("5551ksam@ghmail.com.hk")
 
-
-        Exit Sub
-
-
-
-
-
+        'Debug.WriteLine(Remove_String_From_Email("5551ksam@ghmail.com.hkasdsadasdsa"))
+        'Exit Sub
 
         Start_Searching_Button.Enabled = False
         Pause_Button.Enabled = True
@@ -217,10 +212,11 @@ Public Class Form1
 
             script = script.Replace("\""", "").Replace("\u003C", "<")
 
-            Dim cleanText = script.Replace("<em>", "").Replace("</em>", " ")
-            'Debug.WriteLine(script)
-            'Dim pattern As String = "<em>(.*?)</em>"
-            'Dim cleanText As String = Regex.Replace(script, pattern, "$1")
+            'Dim cleanText = script.Replace("<em>", "").Replace("</em>", " ").Replace("""", "")
+
+            Dim pattern As String = "<em>(.*?)</em>"
+            Dim cleanText As String = Regex.Replace(script, pattern, "$1")
+            Debug.WriteLine(cleanText)
 
             Return cleanText
 
@@ -258,6 +254,9 @@ Public Class Form1
             If IsNumeric(my_mail.Substring(0, 4)) Then
                 my_mail = my_mail.Substring(4)
             End If
+
+            my_mail = Remove_String_From_Email(my_mail)
+
             Debug.WriteLine(my_mail)
             emails.Add(my_mail)
         Next
@@ -357,4 +356,29 @@ Public Class Form1
         End If
 
     End Sub
+
+
+    Public Shared Function Remove_String_From_Email(InputString) As String
+
+        Dim myPatternList As New List(Of String) From {".hk"}
+
+        For Each pattern In myPatternList
+            'Debug.WriteLine("##:: " + pattern)
+            If InputString.Contains(pattern) Then
+                'Debug.WriteLine("############")
+                'Debug.WriteLine(InputString)
+                Dim indexOfHk As Integer = InputString.IndexOf(".hk")
+
+                Dim result As String = InputString.Substring(0, indexOfHk)
+                Return result
+            Else
+                Return InputString
+            End If
+
+        Next
+
+
+        Return InputString
+    End Function
+
 End Class
