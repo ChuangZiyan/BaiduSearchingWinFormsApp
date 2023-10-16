@@ -63,6 +63,20 @@ Public Class Form1
     End Sub
 
     Private Async Sub Start_Searching_Button_Click(sender As Object, e As EventArgs) Handles Start_Searching_Button.Click
+
+
+
+
+        FindEmails("5551ksam@ghmail.com.hk")
+
+
+        Exit Sub
+
+
+
+
+
+
         Start_Searching_Button.Enabled = False
         Pause_Button.Enabled = True
         Pause_Button.Text = "暫停"
@@ -203,9 +217,10 @@ Public Class Form1
 
             script = script.Replace("\""", "").Replace("\u003C", "<")
 
+            Dim cleanText = script.Replace("<em>", "").Replace("</em>", " ")
             'Debug.WriteLine(script)
-            Dim pattern As String = "<em>(.*?)</em>"
-            Dim cleanText As String = Regex.Replace(script, pattern, "$1")
+            'Dim pattern As String = "<em>(.*?)</em>"
+            'Dim cleanText As String = Regex.Replace(script, pattern, "$1")
 
             Return cleanText
 
@@ -238,6 +253,12 @@ Public Class Form1
             If my_mail.Split("@")(0).Length < 4 Then
                 Continue For
             End If
+            Debug.WriteLine(my_mail.Substring(0, 4))
+
+            If IsNumeric(my_mail.Substring(0, 4)) Then
+                my_mail = my_mail.Substring(4)
+            End If
+            Debug.WriteLine(my_mail)
             emails.Add(my_mail)
         Next
 
