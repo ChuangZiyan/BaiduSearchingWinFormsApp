@@ -381,4 +381,9 @@ Public Class Form1
         Return InputString
     End Function
 
+    Private Async Sub Reset_MainWebview_Button_Click(sender As Object, e As EventArgs) Handles Reset_MainWebview_Button.Click
+        Await MainWebView2.CoreWebView2.Profile.ClearBrowsingDataAsync()
+    End Sub
+
+
 End Class
