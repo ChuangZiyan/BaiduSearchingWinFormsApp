@@ -360,6 +360,12 @@ Public Class Form1
 
     Public Shared Function Remove_String_From_Email(InputString) As String
 
+        Dim charactersToRemove As Char() = {"-"}
+
+        For Each charToRemove As Char In charactersToRemove
+            InputString = InputString.Replace(charToRemove, String.Empty)
+        Next
+
         Dim myPatternList As New List(Of String) From {".hk"}
 
         For Each pattern In myPatternList
