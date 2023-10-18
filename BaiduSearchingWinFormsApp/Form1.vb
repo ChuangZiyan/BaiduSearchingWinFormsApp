@@ -8,6 +8,7 @@ Imports System.Collections
 Imports System.Text.RegularExpressions
 Imports Microsoft.Web.WebView2.Core
 Imports System.Text
+Imports System.IO.Pipes
 
 Public Class Form1
 
@@ -387,14 +388,20 @@ Public Class Form1
         Return InputString
     End Function
 
-    Private Async Sub Reset_MainWebview_Button_Click(sender As Object, e As EventArgs) Handles Reset_MainWebview_Button.Click
-        Try
-            Await MainWebView2.CoreWebView2.Profile.ClearBrowsingDataAsync()
-            MsgBox("Reset Webview successfully")
-        Catch ex As Exception
-            MsgBox("Reset Webview failed")
-        End Try
+    Private Sub Reset_MainWebview_Button_Click(sender As Object, e As EventArgs) Handles Reset_MainWebview_Button.Click
+        Dim pipeName As String = "MyNamedPipe"
+        Using pipeServer As New NamedPipeServerStream(pipeName, PipeDirection.Out)
+            Debug.WriteLine("waiting fo connect")
+            pipeServer.WaitForConnection()
+            Debug.WriteLine("connected")
 
+            Dim message As String = "Hello from master program"
+            Dim writer As New StreamWriter(pipeServer)
+            writer.WriteLine(message)
+            writer.Flush()
+
+            Debug.WriteLine("message sent : " & message)
+        End Using
     End Sub
 
 
