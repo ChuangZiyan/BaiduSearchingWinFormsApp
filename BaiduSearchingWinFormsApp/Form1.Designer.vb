@@ -58,10 +58,10 @@ Partial Class Form1
         Me.Http_429_Delay_Sec_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Http_429_Delay_Sec_Label = New System.Windows.Forms.Label()
         Me.Curr_Searching_Page_Label = New System.Windows.Forms.Label()
-        Me.MainWebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Debug_Msg_ListBox = New System.Windows.Forms.ListBox()
-        Me.Reset_MainWebview_Button = New System.Windows.Forms.Button()
+        Me.test_show_form2_Button = New System.Windows.Forms.Button()
+        Me.Release_WebviewForm_Button = New System.Windows.Forms.Button()
         CType(Me.Line_Number_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Delay_Sec_Between_Searching_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Delay_Sec_Between_Keyword_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +69,6 @@ Partial Class Form1
         CType(Me.Searching_Time_Delay_Sec_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Number_Of_Searching_Count_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Http_429_Delay_Sec_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MainWebView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -287,9 +286,9 @@ Partial Class Form1
         '
         'Message_RichTextBox
         '
-        Me.Message_RichTextBox.Location = New System.Drawing.Point(12, 330)
+        Me.Message_RichTextBox.Location = New System.Drawing.Point(11, 337)
         Me.Message_RichTextBox.Name = "Message_RichTextBox"
-        Me.Message_RichTextBox.Size = New System.Drawing.Size(364, 289)
+        Me.Message_RichTextBox.Size = New System.Drawing.Size(364, 244)
         Me.Message_RichTextBox.TabIndex = 25
         Me.Message_RichTextBox.Text = ""
         '
@@ -389,18 +388,6 @@ Partial Class Form1
         Me.Curr_Searching_Page_Label.TabIndex = 36
         Me.Curr_Searching_Page_Label.Text = "正在搜尋 : "
         '
-        'MainWebView2
-        '
-        Me.MainWebView2.AllowExternalDrop = True
-        Me.MainWebView2.CreationProperties = Nothing
-        Me.MainWebView2.DefaultBackgroundColor = System.Drawing.Color.White
-        Me.MainWebView2.Location = New System.Drawing.Point(644, 29)
-        Me.MainWebView2.Name = "MainWebView2"
-        Me.MainWebView2.Size = New System.Drawing.Size(660, 590)
-        Me.MainWebView2.Source = New System.Uri("https://www.baidu.com/", System.UriKind.Absolute)
-        Me.MainWebView2.TabIndex = 37
-        Me.MainWebView2.ZoomFactor = 1.0R
-        '
         'Label15
         '
         Me.Label15.AutoSize = True
@@ -416,27 +403,36 @@ Partial Class Form1
         Me.Debug_Msg_ListBox.ItemHeight = 19
         Me.Debug_Msg_ListBox.Location = New System.Drawing.Point(382, 330)
         Me.Debug_Msg_ListBox.Name = "Debug_Msg_ListBox"
-        Me.Debug_Msg_ListBox.Size = New System.Drawing.Size(256, 289)
+        Me.Debug_Msg_ListBox.Size = New System.Drawing.Size(256, 251)
         Me.Debug_Msg_ListBox.TabIndex = 39
         '
-        'Reset_MainWebview_Button
+        'test_show_form2_Button
         '
-        Me.Reset_MainWebview_Button.Location = New System.Drawing.Point(544, 264)
-        Me.Reset_MainWebview_Button.Name = "Reset_MainWebview_Button"
-        Me.Reset_MainWebview_Button.Size = New System.Drawing.Size(94, 29)
-        Me.Reset_MainWebview_Button.TabIndex = 40
-        Me.Reset_MainWebview_Button.Text = "Reset"
-        Me.Reset_MainWebview_Button.UseVisualStyleBackColor = True
+        Me.test_show_form2_Button.Location = New System.Drawing.Point(444, 128)
+        Me.test_show_form2_Button.Name = "test_show_form2_Button"
+        Me.test_show_form2_Button.Size = New System.Drawing.Size(194, 29)
+        Me.test_show_form2_Button.TabIndex = 41
+        Me.test_show_form2_Button.Text = "Show webview"
+        Me.test_show_form2_Button.UseVisualStyleBackColor = True
+        '
+        'Release_WebviewForm_Button
+        '
+        Me.Release_WebviewForm_Button.Location = New System.Drawing.Point(444, 163)
+        Me.Release_WebviewForm_Button.Name = "Release_WebviewForm_Button"
+        Me.Release_WebviewForm_Button.Size = New System.Drawing.Size(194, 29)
+        Me.Release_WebviewForm_Button.TabIndex = 42
+        Me.Release_WebviewForm_Button.Text = "Close webview"
+        Me.Release_WebviewForm_Button.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(644, 635)
-        Me.Controls.Add(Me.Reset_MainWebview_Button)
+        Me.ClientSize = New System.Drawing.Size(650, 592)
+        Me.Controls.Add(Me.Release_WebviewForm_Button)
+        Me.Controls.Add(Me.test_show_form2_Button)
         Me.Controls.Add(Me.Debug_Msg_ListBox)
         Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.MainWebView2)
         Me.Controls.Add(Me.Curr_Searching_Page_Label)
         Me.Controls.Add(Me.Http_429_Delay_Sec_Label)
         Me.Controls.Add(Me.Http_429_Delay_Sec_NumericUpDown)
@@ -482,7 +478,6 @@ Partial Class Form1
         CType(Me.Searching_Time_Delay_Sec_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Number_Of_Searching_Count_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Http_429_Delay_Sec_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MainWebView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -524,8 +519,8 @@ Partial Class Form1
     Friend WithEvents Http_429_Delay_Sec_NumericUpDown As NumericUpDown
     Friend WithEvents Http_429_Delay_Sec_Label As Label
     Friend WithEvents Curr_Searching_Page_Label As Label
-    Friend WithEvents MainWebView2 As Microsoft.Web.WebView2.WinForms.WebView2
     Friend WithEvents Label15 As Label
     Friend WithEvents Debug_Msg_ListBox As ListBox
-    Friend WithEvents Reset_MainWebview_Button As Button
+    Friend WithEvents test_show_form2_Button As Button
+    Friend WithEvents Release_WebviewForm_Button As Button
 End Class

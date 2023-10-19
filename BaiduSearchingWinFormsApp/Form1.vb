@@ -186,47 +186,47 @@ Public Class Form1
 
     Public Async Function Submit_Get_Bing_Searching_Result_Html(keyword As String, start As Integer) As Task(Of String)
 
-        'Dim apiUrl As String = "https://search.yahoo.com/search?p=" + "%40 " + keyword + " EMAIL HK&b=" & start
-        Dim apiUrl As String = "https://www.baidu.com/s?wd=" + "%40 " + keyword + " EMAIL HK&pn=" & start
+
+        ''Dim apiUrl As String = "https://search.yahoo.com/search?p=" + "%40 " + keyword + " EMAIL HK&b=" & start
+        'Dim apiUrl As String = "https://www.baidu.com/s?wd=" + "%40 " + keyword + " EMAIL HK&pn=" & start
 
 
-        'https://www.baidu.com/s?wd=test&pn=20
+        ''https://www.baidu.com/s?wd=test&pn=20
 
-        Debug.WriteLine(apiUrl)
+        'Debug.WriteLine(apiUrl)
 
-        'Return "hello this is test email.test@hello.com feel free to contact us"
+        ''Return "hello this is test email.test@hello.com feel free to contact us"
 
-        Try
-            MainWebView2.CoreWebView2.Navigate(apiUrl)
-            ' wait 15 secs until page ready
-            NAVIGATION_COMPLETED = False
-            For wait_sec = 0 To 15
-                If NAVIGATION_COMPLETED Then
-                    Exit For
-                Else
-                    Await Delay_msec(1000)
-                End If
+        'Try
+        '    MainWebView2.CoreWebView2.Navigate(apiUrl)
+        '    ' wait 15 secs until page ready
+        '    NAVIGATION_COMPLETED = False
+        '    For wait_sec = 0 To 15
+        '        If NAVIGATION_COMPLETED Then
+        '            Exit For
+        '        Else
+        '            Await Delay_msec(1000)
+        '        End If
 
-            Next
+        '    Next
 
-            Dim script As String = Await MainWebView2.ExecuteScriptAsync("document.querySelector('#content_left').outerHTML.toString();")
+        '    Dim script As String = Await MainWebView2.ExecuteScriptAsync("document.querySelector('#content_left').outerHTML.toString();")
 
-            script = script.Replace("\""", "").Replace("\u003C", "<")
+        '    script = script.Replace("\""", "").Replace("\u003C", "<")
 
-            'Dim cleanText = script.Replace("<em>", "").Replace("</em>", " ").Replace("""", "")
+        '    Dim cleanText = script.Replace("<em>", "").Replace("</em>", " ").Replace("""", "")
 
-            Dim pattern As String = "<em>(.*?)</em>"
-            Dim cleanText As String = Regex.Replace(script, pattern, "$1")
-            Debug.WriteLine(cleanText)
+        '    Dim pattern As String = "<em>(.*?)</em>"
+        '    Dim cleanText As String = Regex.Replace(script, pattern, "$1")
+        '    Debug.WriteLine(cleanText)
 
-            Return cleanText
+        '    Return cleanText
 
-        Catch ex As Exception
-            Return "exception"
-            'EventLog_ListBox.Items.Add("查詢發生錯誤")
+        'Catch ex As Exception
+        '    Return "exception"
+        '    'EventLog_ListBox.Items.Add("查詢發生錯誤")
 
-        End Try
-
+        'End Try
 
         Return "error"
 
@@ -319,7 +319,7 @@ Public Class Form1
 
         Line_Number_Counter_Label.Text = "共" & line_counter & "行"
 
-        AddHandler MainWebView2.NavigationCompleted, AddressOf WebView2_NavigationCompletedAsync
+        'AddHandler MainWebView2.NavigationCompleted, AddressOf WebView2_NavigationCompletedAsync
     End Sub
 
 
@@ -388,21 +388,26 @@ Public Class Form1
         Return InputString
     End Function
 
-    Private Sub Reset_MainWebview_Button_Click(sender As Object, e As EventArgs) Handles Reset_MainWebview_Button.Click
-        Dim pipeName As String = "MyNamedPipe"
-        Using pipeServer As New NamedPipeServerStream(pipeName, PipeDirection.Out)
-            Debug.WriteLine("waiting fo connect")
-            pipeServer.WaitForConnection()
-            Debug.WriteLine("connected")
 
-            Dim message As String = "Hello from master program"
-            Dim writer As New StreamWriter(pipeServer)
-            writer.WriteLine(message)
-            writer.Flush()
 
-            Debug.WriteLine("message sent : " & message)
-        End Using
+    Dim WebviewForm As Webview2Form = Nothing ' declare as null
+
+    Private Sub test_show_form2_Button_Click(sender As Object, e As EventArgs) Handles test_show_form2_Button.Click
+
+        If WebviewForm Is Nothing Then
+            WebviewForm = New Webview2Form() ' init a new object
+        End If
+        WebviewForm.Show()
     End Sub
 
+    Private Sub Release_WebviewForm_Button_Click(sender As Object, e As EventArgs) Handles Release_WebviewForm_Button.Click
+
+        If WebviewForm IsNot Nothing Then
+            WebviewForm.Close()
+            WebviewForm.Dispose()
+            WebviewForm = Nothing ' to null point
+        End If
+
+    End Sub
 
 End Class
